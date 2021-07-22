@@ -7,7 +7,7 @@ var ToDoList = function(name) {
     this.undoButton = document.querySelector('[data-undo="' + name +'"]');
    
     
-    this.demoList = ["Do stuff", "Make Front-End Magic", "COFFEE!!!!", "Another important point", "Yet another thing to do"];
+    this.demoList = ["complete Challenge", "Finish Js", "Have hot coffee", "Code AGAIN", "Rest"];
     
     
     this.addEntry = function(entry) {
@@ -43,7 +43,6 @@ var ToDoList = function(name) {
   
   ToDoList.prototype.removeEntry = function() {
     this.el.addEventListener('click', function(e) {
-      // make sure it's a <li> that gets removed
       if(e.target.nodeName === 'LI') {
         this.lastRemoved.push({action: 'remove', content: e.target});
        this.el.removeChild(e.target);
@@ -55,7 +54,6 @@ var ToDoList = function(name) {
   ToDoList.prototype.undoRemove = function() {
     this.undoButton.addEventListener('click', function(e) {
       e.preventDefault();
-      // array.pop() returns last element of an array & removes it.
       var lastEntry = this.lastRemoved.pop();
       if(lastEntry && lastEntry.action === 'remove') {
         this.addEntry(lastEntry.content.innerText);
@@ -64,14 +62,6 @@ var ToDoList = function(name) {
       }
     }.bind(this));
   }
-  
-  /*
-    Make a new List and initialize it with the standard functions. 
-    Optional you could use it like
-    
-    var myList = new ToDoList('listName');
-    myList.addEntry();
-  */
   
   var lists = {};
   
